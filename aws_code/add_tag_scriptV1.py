@@ -4,13 +4,13 @@ import time
 ec2_client = boto3.client('ec2')
 instances = [i for i in boto3.resource('ec2', region_name='us-west-1').instances.all()]
 
-# What tag do we want to check againist
+# What tag do we want to check against
 check_tag = input('What tag do you want to validate? ')
 set_value = input('Enter a value for the above key: ')
 
 untagged_instances = []
 
-# This will check if instances in a region have a certian tag FAKE
+# This will check if instances in a region have a certain tag FAKE
 for i in instances:
   if i.tags is not None and check_tag not in [t['Key'] for t in i.tags]:
    # print(i.instance_id, 'does not have the', check_tag, 'tag') 
